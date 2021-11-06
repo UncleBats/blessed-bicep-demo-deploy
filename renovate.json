@@ -1,5 +1,27 @@
 {
   "extends": [
-    "config:base"
+    "config:base",
+    ":prHourlyLimitNone",
+    ":prConcurrentLimit20"
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "datasources": ["github-releases"],
+      "registryUrls": ["https://github.com"]
+    }
+  ],
+  "commitMessagePrefix": "⬆️",
+  "dependencyDashboard": true,
+  "regexManagers": [
+    {
+      "fileMatch": ["\\S+.bicep$"],
+      "matchStrings": ["'br:bicepsharedregistry\\.azurecr\\.io\\/bicep\\/modules\\/|(?<depName>\\S*):(?<currentValue>\\S*)'"],
+      "datasourceTemplate": "github-releases",
+      "lookupNameTemplate": "ErickSegaar/blessed-bicep-deploy"
+    }
   ]
 }
