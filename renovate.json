@@ -10,8 +10,7 @@
       "automerge": true
     },
     {
-      "datasources": ["github-releases", "github-tags"],
-      "registryUrls": ["https://github.com/"]
+      "datasources": ["github-releases", "github-tags"]
     }
   ],
   "commitMessagePrefix": "⬆️",
@@ -20,7 +19,7 @@
     {
       "fileMatch": ["\\S+.bicep$"],
       "matchStrings": ["'br:bicepsharedregistry\\.azurecr\\.io\\/bicep\\/modules\\/|(?<depName>\\S*):(?<currentValue>\\S*)'"],
-      "datasourceTemplate": "github-releases",
+      "datasourceTemplate": "github-tags",
       "lookupNameTemplate": "ErickSegaar/blessed-bicep-deploy"
     }
   ]
