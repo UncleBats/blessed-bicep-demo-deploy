@@ -34,7 +34,7 @@ jobs:
         with:
           name: drop
           path: |
-            ./iac/main.bicep.json
+            ./iac/main.json
             ./shared/deploy-infrastructure.ps1
 
   dev-infrastructure:
