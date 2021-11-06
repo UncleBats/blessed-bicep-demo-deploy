@@ -54,7 +54,5 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - shell: pwsh
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           ./src/shared/deploy-infrastructure.ps1 -environmentCode dev -resourceGroupPrefix 'mySharedDemo' -templateFile './src/iac/main.json'
