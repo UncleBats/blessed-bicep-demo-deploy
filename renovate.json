@@ -15,7 +15,7 @@
   "regexManagers": [
     {
       "fileMatch": ["\\S+.bicep$"],
-      "matchStrings": ["'br:bicepsharedregistry\\.azurecr\\.io\\/bicep\\/modules\\/(?<depName>\\S*):(?<currentValue>\\S*)'"],
+      "matchStrings": ["'br:bicepsharedregistry\\.azurecr\\.io\\/bicep\\/modules\\/storage:(?<currentValue>\\S*)'"],
       "datasourceTemplate": "github-tags",
       "lookupNameTemplate": "ErickSegaar/blessed-bicep-deploy"
     }
