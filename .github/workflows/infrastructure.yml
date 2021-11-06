@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-detection-api-infrastructure:
+  build-infrastructure:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed') || github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
 
     runs-on: ubuntu-latest
@@ -34,7 +34,7 @@ jobs:
         with:
           name: drop
           path: |
-            ./iac/main.bicep.json
+            ./iac/main.json
             ./shared/deploy-infrastructure.ps1
 
   dev-infrastructure:
@@ -54,7 +54,5 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - shell: pwsh
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
         run: |
           ./src/shared/deploy-infrastructure.ps1 -environmentCode dev -resourceGroupPrefix 'mySharedDemo' -templateFile './src/iac/main.json'
