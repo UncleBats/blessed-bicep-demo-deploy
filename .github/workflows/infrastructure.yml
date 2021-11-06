@@ -22,11 +22,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Build bicep
         uses: azure/CLI@v1
         with:
           azcliversion: 2.21.0
           inlineScript: |
+            az acr login --name bicepsharedregistry.azurecr.io
             az bicep build --files ./iac/main.bicep
 
       - name: Upload artifacts
@@ -55,5 +61,4 @@ jobs:
 
       - shell: pwsh
         run: |
-          az acr login --name bicepsharedregistry.azurecr.io
           ./src/shared/deploy-infrastructure.ps1 -environmentCode dev -resourceGroupPrefix 'mySharedDemo' -templateFile './src/iac/main.json'
