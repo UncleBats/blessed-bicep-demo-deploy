@@ -8,9 +8,6 @@
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
-    },
-    {
-      "datasources": ["github-releases", "github-tags"]
     }
   ],
   "commitMessagePrefix": "⬆️",
