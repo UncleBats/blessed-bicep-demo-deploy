@@ -55,4 +55,5 @@ jobs:
 
       - shell: pwsh
         run: |
+          az acr login --name bicepsharedregistry.azurecr.io
           ./src/shared/deploy-infrastructure.ps1 -environmentCode dev -resourceGroupPrefix 'mySharedDemo' -templateFile './src/iac/main.json'
