@@ -1,0 +1,60 @@
+name: infrastructure
+ 
+on:
+  push:
+    branches: [ main ]
+    paths:
+    - 'iac/**'
+    - '.github/workflows/infrastructure.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+    - 'iac/**'
+    - '.github/workflows/infrastructure.yml'
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build-detection-api-infrastructure:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed') || github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build bicep
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.21.0
+          inlineScript: |
+            az bicep build --files ./iac/main.bicep
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: drop
+          path: |
+            ./iac/main.bicep.json
+            ./shared/deploy-infrastructure.ps1
+
+  dev-infrastructure:
+    if: github.event_name == 'push'  || github.event_name == 'repository_dispatch' || github.event_name == 'workflow_dispatch'
+
+    needs: build-infrastructure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: drop
+          path: src
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - shell: pwsh
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: |
+          ./src/shared/deploy-infrastructure.ps1 -environmentCode dev -resourceGroupPrefix 'mySharedDemo' -templateFile './src/iac/main.json'
