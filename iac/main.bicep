@@ -5,10 +5,10 @@ targetScope = 'resourceGroup'
 param env string
 
 
-param saName string = 'acrblessed${uniqueString(resourceGroup().id)}${env}'
+param saName string = 'acrblessed${uniqueString(resourceGroup().id)}'
 
 module sa './templates/storageaccount.bicep' = {
-  name: 'blessed-sa-${env}'
+  name: 'blessed-sa'
   params:{
     name: saName
     containers: [
