@@ -7,7 +7,7 @@ param env string
 
 param saName string = 'acrblessed${uniqueString(resourceGroup().id)}'
 
-module sa 'br:bicepsharedregistry.azurecr.io/bicep/modules/storage:0.1' = {
+module sa 'br:bicepsharedregistry.azurecr.io/bicep/modules/storage:0.1.0' = {
   name: 'blessed-sa'
   params:{
     name: saName
