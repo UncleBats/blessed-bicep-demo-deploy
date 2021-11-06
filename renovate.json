@@ -10,8 +10,7 @@
       "automerge": true
     },
     {
-      "datasources": ["github-releases"],
-      "registryUrls": ["https://github.com/"]
+      "datasources": ["github-releases"]
     }
   ],
   "commitMessagePrefix": "⬆️",
