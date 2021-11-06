@@ -1,0 +1,16 @@
+{
+    "moduleAliases": {
+      "br": {
+        "StorageModules": {
+          "registry": "bicepsharedregistry.azurecr.io",
+          "modulePath": "bicep/modules"
+        }
+      },
+      "ts": {
+        "BlessedTemplates": {
+          "subscription": "dcf90f5e-4358-4e7e-808a-a8b81838e919",
+          "resourceGroup": "mySharedDemo"
+        }
+      }
+    }
+  }

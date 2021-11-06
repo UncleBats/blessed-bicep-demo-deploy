@@ -22,11 +22,17 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
       - name: Build bicep
         uses: azure/CLI@v1
         with:
           azcliversion: 2.21.0
           inlineScript: |
+            az acr login --name bicepsharedregistry.azurecr.io --expose-token
             az bicep build --files ./iac/main.bicep
 
       - name: Upload artifacts
