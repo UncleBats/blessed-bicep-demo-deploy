@@ -32,7 +32,7 @@ jobs:
         with:
           azcliversion: 2.21.0
           inlineScript: |
-            az acr login --name bicepsharedregistry.azurecr.io
+            az acr login --name bicepsharedregistry.azurecr.io --expose-token
             az bicep build --files ./iac/main.bicep
 
       - name: Upload artifacts
