@@ -36,7 +36,7 @@ jobs:
             az bicep build --files ./iac/main.bicep
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: drop
           path: |
