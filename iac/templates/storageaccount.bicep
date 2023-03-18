@@ -36,7 +36,7 @@ resource blobservices 'Microsoft.Storage/storageAccounts/blobServices@2021-04-01
 }
 
 //create containers if specified
-resource storageAccountContainers 'Microsoft.Storage/storageAccounts/blobServices/containers@2021-02-01' = [for container in containers : if(!empty(containers)) {
+resource storageAccountContainers 'Microsoft.Storage/storageAccounts/blobServices/containers@2022-09-01' = [for container in containers : if(!empty(containers)) {
   name: !empty(containers)? '${name}/default/${container}' : 'sk/ip/ped'
   dependsOn: [
     storageAccount
