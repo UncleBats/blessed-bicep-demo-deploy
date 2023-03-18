@@ -30,7 +30,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   tags: {}
 }
  
-resource blobservices 'Microsoft.Storage/storageAccounts/blobServices@2021-04-01' = {
+resource blobservices 'Microsoft.Storage/storageAccounts/blobServices@2022-09-01' = {
   name: 'default'
   parent: storageAccount
 }
