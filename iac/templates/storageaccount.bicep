@@ -3,7 +3,7 @@ param name string
 @description('Array of Blob containers to create - string')
 param containers array = []
 
-resource storageAccount 'Microsoft.Storage/storageAccounts@2021-04-01' = {
+resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: name
   location: resourceGroup().location
   properties: {
