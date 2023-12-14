@@ -49,7 +49,7 @@ jobs:
     needs: build-infrastructure
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v4
         with:
           name: drop
           path: src
